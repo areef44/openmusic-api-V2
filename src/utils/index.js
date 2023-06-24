@@ -1,12 +1,12 @@
-//mapDBToModel mapping
-const mapDBToModel = ({ 
+// mapDBToModel mapping
+const mapDBToModel = ({
     id,
     title,
     year,
     performer,
     genre,
     duration,
-    album_id
+    album_id,
   }) => ({
     id,
     title,
@@ -14,10 +14,10 @@ const mapDBToModel = ({
     performer,
     genre,
     duration,
-    albumId : album_id,
+    albumId: album_id,
   });
 
-//mapDBToModelAlbums mapping
+// mapDBToModelAlbums mapping
 const mapDBToModelAlbums = ({
     id,
     name,
@@ -26,11 +26,11 @@ const mapDBToModelAlbums = ({
     id,
     name,
     year,
-    songs: song
+    songs: song,
     });
 
-//mapDBToModelSongs mapping
-const mapDBToModelSongs = ({ 
+// mapDBToModelSongs mapping
+const mapDBToModelSongs = ({
       id,
       title,
       year,
@@ -48,7 +48,7 @@ const mapDBToModelSongs = ({
       albumId,
     });
 
-  //mapDBPlaylistSong mapping
+  // mapDBPlaylistSong mapping
   const mapDBPlaylistSong = (playlists, songs) => ({
       playlist: {
           id: playlists.id,
@@ -58,18 +58,17 @@ const mapDBToModelSongs = ({
       },
   });
 
-
-  //mapDBPlaylistActivity
+  // mapDBPlaylistActivity
   const mapDBPlaylistActivity = (playlistId, activities) => ({
     playlistId: playlistId,
     activities: activities,
 });
 
-//exports mapping
-module.exports = { 
+// exports mapping
+module.exports = {
   mapDBToModel,
   mapDBToModelAlbums,
   mapDBToModelSongs,
   mapDBPlaylistSong,
-  mapDBPlaylistActivity
+  mapDBPlaylistActivity,
 };

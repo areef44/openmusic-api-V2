@@ -1,8 +1,7 @@
 /* eslint-disable camelcase */
 
-
 exports.up = (pgm) => {
-    pgm.createTable('songs',{
+    pgm.createTable('songs', {
         id: {
            type: 'VARCHAR(50)',
            primaryKey: true,
@@ -34,13 +33,13 @@ exports.up = (pgm) => {
         },
         created_at: {
            type: 'TEXT',
-           notNull:true,
+           notNull: true,
         },
         updated_at: {
            type: 'TEXT',
            notNull: true,
-        },   
-       });
+        },
+    });
 };
 
 exports.down = (pgm) => {

@@ -3,7 +3,7 @@
 exports.shorthands = undefined;
 
 exports.up = (pgm) => {
-    pgm.createTable('playlists',{
+    pgm.createTable('playlists', {
         id: {
             type: 'VARCHAR(50)',
             primaryKey: true,
@@ -18,7 +18,7 @@ exports.up = (pgm) => {
             onDelete: 'cascade',
             onUpdate: 'cascade',
         },
-        created_at:{
+        created_at: {
             type: 'TEXT',
             notNull: true,
         },

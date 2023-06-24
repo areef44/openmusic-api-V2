@@ -11,6 +11,6 @@ class ActivitiesValidator {
 
     return validationResult.value;
   };
-};
+}
 
 module.exports = { ActivitiesValidator };

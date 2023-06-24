@@ -2,11 +2,11 @@ const PlaylistsHandler = require('./handler');
 
 const routes = require('./routes');
 
-//plugin playlist
+// plugin playlist
 module.exports = {
     name: 'playlists',
     version: '1.0.0',
-    register: async(server,{service, validator}) => {
+    register: async (server, { service, validator }) => {
         const playlistsHandler = new PlaylistsHandler(service, validator);
         server.route(routes(playlistsHandler));
     },

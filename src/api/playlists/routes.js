@@ -1,32 +1,32 @@
 const routes = (handler) => [
-    //endpoint untuk add playlist 
+    // endpoint untuk add playlist
     {
         method: 'POST',
         path: '/playlists',
-        handler: (request, h) => handler.postPlaylistHandler(request,h),
+        handler: (request, h) => handler.postPlaylistHandler(request, h),
         options: {
             auth: 'openmusic_jwt',
         },
     },
-    //endpoint untuk get playlists
+    // endpoint untuk get playlists
     {
         method: 'GET',
         path: '/playlists',
-        handler: (request, h) => handler.getPlaylistsHandler(request,h),
+        handler: (request, h) => handler.getPlaylistsHandler(request, h),
         options: {
             auth: 'openmusic_jwt',
         },
     },
-    //endpoint untuk delete playlist 
+    // endpoint untuk delete playlist
     {
         method: 'DELETE',
         path: '/playlists/{id}',
-        handler: (request, h) => handler.deletePlaylistByIdHandler(request,h),
+        handler: (request, h) => handler.deletePlaylistByIdHandler(request, h),
         options: {
             auth: 'openmusic_jwt',
         },
     },
-    //endpoint untuk add song to playlist
+    // endpoint untuk add song to playlist
     {
         method: 'POST',
         path: '/playlists/{id}/songs',
@@ -35,7 +35,7 @@ const routes = (handler) => [
             auth: 'openmusic_jwt',
         },
     },
-    //endpoint untuk get songs from playlist
+    // endpoint untuk get songs from playlist
     {
         method: 'GET',
         path: '/playlists/{id}/songs',
@@ -44,7 +44,7 @@ const routes = (handler) => [
             auth: 'openmusic_jwt',
         },
     },
-    //endpoint untuk delete song from playlist
+    // endpoint untuk delete song from playlist
     {
         method: 'DELETE',
         path: '/playlists/{id}/songs',
@@ -53,7 +53,7 @@ const routes = (handler) => [
             auth: 'openmusic_jwt',
         },
     },
-    //endpoint untuk get activity from playlist
+    // endpoint untuk get activity from playlist
     {
         method: 'GET',
         path: '/playlists/{id}/activities',
@@ -63,5 +63,5 @@ const routes = (handler) => [
         },
     },
 ];
-//export routes
+// export routes
 module.exports = routes;

@@ -3,7 +3,7 @@
 exports.shorthands = undefined;
 
 exports.up = (pgm) => {
-    pgm.createTable('collaborations',{
+    pgm.createTable('collaborations', {
         id: {
             type: 'VARCHAR(50)',
             primaryKey: true,
@@ -26,13 +26,13 @@ exports.up = (pgm) => {
             type: 'TEXT',
             notNull: true,
         },
-        updated_at:{
+        updated_at: {
             type: 'TEXT',
             notNull: true,
         },
     });
 };
 
-exports.down = (pgm) => {{
+exports.down = (pgm) => {
     pgm.dropTable('collaborations');
-}};
+};

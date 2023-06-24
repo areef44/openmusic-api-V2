@@ -1,20 +1,20 @@
 const routes = (handler) => [
 
-    //endpoint untuk add authentications
+    // endpoint untuk add authentications
     {
         method: 'POST',
         path: '/authentications',
         handler: (request, h) => handler.postAuthenticationHandler(request, h),
     },
 
-    //endpoint untuk update authentications
+    // endpoint untuk update authentications
     {
         method: 'PUT',
         path: '/authentications',
         handler: (request, h) => handler.putAuthenticationHandler(request, h),
     },
 
-    //endpoint untuk delete authentications
+    // endpoint untuk delete authentications
     {
         method: 'DELETE',
         path: '/authentications',
@@ -22,5 +22,5 @@ const routes = (handler) => [
     },
 ];
 
-//exports module routes
+// exports module routes
 module.exports = routes;

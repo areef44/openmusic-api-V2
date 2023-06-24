@@ -1,6 +1,6 @@
 const routes = (handler) => [
 
-    //endpoint untuk add users
+    // endpoint untuk add users
     {
         method: 'POST',
         path: '/users',
@@ -8,5 +8,5 @@ const routes = (handler) => [
     },
 ];
 
-//exports module routes
+// exports module routes
 module.exports = routes;

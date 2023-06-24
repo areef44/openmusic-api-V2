@@ -1,50 +1,47 @@
-//env module
+// env module
 require('dotenv').config();
 
-//Hapi module
+// Hapi module
 const Hapi = require('@hapi/hapi');
 const Jwt = require('@hapi/jwt');
 
-//Albums module
+// Albums module
 const albums = require('./api/albums');
 const AlbumsService = require('./services/postgres/AlbumsService');
-const {AlbumsValidator} = require('./validator/albums');
+const { AlbumsValidator } = require('./validator/albums');
 
-//Songs module
-const songs = require('./api/songs')
+// Songs module
+const songs = require('./api/songs');
 const SongsService = require('./services/postgres/SongsService');
-const {SongsValidator} = require('./validator/songs');
- 
-//Users module
+const { SongsValidator } = require('./validator/songs');
+
+// Users module
 const users = require('./api/users');
 const UsersService = require('./services/postgres/UsersService');
-const {UsersValidator} = require('./validator/users');
+const { UsersValidator } = require('./validator/users');
 
-//Authentications module
+// Authentications module
 const authentications = require('./api/authentications');
 const AuthenticationsService = require('./services/postgres/AuthenticationsService');
 const TokenManager = require('./tokenize/TokenManager');
-const {AuthenticationsValidator} = require('./validator/authentications');
+const { AuthenticationsValidator } = require('./validator/authentications');
 
-//Playlists module
+// Playlists module
 const playlists = require('./api/playlists');
-const {PlaylistsService} = require('./services/postgres/PlaylistsService');
-const {PlaylistsValidator} = require('./validator/playlists');
+const { PlaylistsService } = require('./services/postgres/PlaylistsService');
+const { PlaylistsValidator } = require('./validator/playlists');
 
-
-//Activities module
+// Activities module
 const { ActivitiesService } = require('./services/postgres/ActivitiesService');
 
-
-//Collaborations module
+// Collaborations module
 const collaborations = require('./api/collaborations');
 const CollaborationsService = require('./services/postgres/CollaborationsService');
-const {CollaborationsValidator} = require('./validator/collaborations');
+const { CollaborationsValidator } = require('./validator/collaborations');
 
-//Exceptions module 
+// Exceptions module
 const ClientError = require('./exceptions/ClientError');
 
- 
 const init = async () => {
   const albumsService = new AlbumsService();
   const albumsValidator = new AlbumsValidator();
@@ -76,7 +73,7 @@ const init = async () => {
     },
   ]);
 
-  server.auth.strategy('openmusic_jwt','jwt', {
+  server.auth.strategy('openmusic_jwt', 'jwt', {
     keys: process.env.ACCESS_TOKEN_KEY,
     verify: {
       aud: false,
@@ -93,7 +90,7 @@ const init = async () => {
   });
 
   await server.register([
-    //register albums service dan validatornya
+    // register albums service dan validatornya
     {
       plugin: albums,
       options: {
@@ -102,7 +99,7 @@ const init = async () => {
       },
     },
 
-    //register songs service dan validatornya
+    // register songs service dan validatornya
     {
       plugin: songs,
       options: {
@@ -111,7 +108,7 @@ const init = async () => {
       },
     },
 
-    //register users service dan validatornya
+    // register users service dan validatornya
     {
       plugin: users,
       options: {
@@ -119,8 +116,7 @@ const init = async () => {
           validator: usersValidator,
       },
     },
-    
-    //register authentication service dan validatornya
+    // register authentication service dan validatornya
     {
       plugin: authentications,
       options: {
@@ -130,8 +126,7 @@ const init = async () => {
         validator: authenticationsValidator,
       },
     },
-    
-    //register playlists service dan validatornya
+    // register playlists service dan validatornya
     {
       plugin: playlists,
       options: {
@@ -140,7 +135,7 @@ const init = async () => {
       },
     },
 
-    //register collaborations service dan validatornya
+    // register collaborations service dan validatornya
     {
       plugin: collaborations,
       options: {
@@ -151,12 +146,12 @@ const init = async () => {
     },
   ]);
 
-  //konfigurasi response jika server error
+  // konfigurasi response jika server error
   server.ext('onPreResponse', (request, h) => {
     const { response } = request;
 
-    if (response instanceof Error){
-      if (response instanceof ClientError){
+    if (response instanceof Error) {
+      if (response instanceof ClientError) {
         const newResponse = h.response({
           status: 'fail',
           message: response.message,
@@ -165,7 +160,7 @@ const init = async () => {
         return newResponse;
       }
 
-      if (!response.isServer){
+      if (!response.isServer) {
         return h.continue;
       }
 
@@ -173,7 +168,6 @@ const init = async () => {
         status: 'error',
         message: 'Maaf, terjadi kegagalan pada server kami.',
       });
-      
       newResponse.code(500);
       console.error(response);
       return newResponse;
@@ -181,10 +175,8 @@ const init = async () => {
 
     return h.continue;
   });
-    
-  //Start Server
+  // Start Server
   await server.start();
   console.log(`Server berjalan pada ${server.info.uri}`);
 };
- 
 init();
